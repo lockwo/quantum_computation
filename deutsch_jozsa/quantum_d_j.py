@@ -5,25 +5,32 @@ import random
 def get_n_qbits(n):
     return cirq.LineQubit.range(n)
 
-def balanced_oracle(q1, q2, n):
-    return [cirq.CNOT(q1, q2)]
+def balanced_oracle(n, qbits):
+    if n == 1:
+        return [cirq.CNOT(qbits[0], qbits[1])]
+    elif n == 2:
+        return [cirq.CNOT(qbits[0], qbits[2]), cirq.CNOT(qbits[1], qbits[2])]
 
-
-def constant_oralce(q1, q2, n):
-    return [cirq.CNOT(q1, q2), cirq.X(q2), cirq.CNOT(q1, q2)]
+def constant_oralce(n, qbits):
+    if n == 1:
+        return [cirq.CNOT(qbits[0], qbits[1]), cirq.X(qbits[1]), cirq.CNOT(qbits[0], qbits[1])]
+    elif n == 2:
+        return [cirq.X(qbits[1])]
 
 def make_circuit(n, oracle):
-    qbits = get_n_qbits(n+1)
+    qbits = get_n_qbits(max(2, n+1))
     c = cirq.Circuit()
     c.append([cirq.X(qbits[n])])
     c.append([cirq.Moment([cirq.H(i) for i in qbits])])
-    c.append(oracle(qbits[0], qbits[1], n))
-    for i in range(n):
-        c.append([cirq.H(qbits[i]), cirq.measure(qbits[i], key='result')])
+    c.append(oracle(n, qbits))
+    c.append([cirq.Moment([cirq.H(qbits[i]) for i in range(len(qbits) - 1)])])
+    c.append(cirq.measure(*qbits[:n], key='result'))
     return c
 
+def bitstring(bits):
+    return ''.join(str(int(b)) for b in bits)
 
-N = 1 
+N = 2
 
 if random.random() < 0.5:
     oracle = constant_oralce
@@ -45,4 +52,7 @@ if N == 1:
     else: 
         print("CONSTANT, actual:", correct)
 else:
-    print("NOT YET IMPLEMENTED")
+    result = simulator.run(circuit, repetitions=1024)
+    frequencies = result.histogram(key='result', fold_func=bitstring)
+    print('Sampled results:\n{}'.format(frequencies))
+    print("High 0*N bit = constant, actual:", correct)
