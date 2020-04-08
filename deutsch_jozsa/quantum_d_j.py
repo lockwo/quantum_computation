@@ -22,6 +22,9 @@ def make_circuit(n, oracle):
         c.append([cirq.H(qbits[i]), cirq.measure(qbits[i], key='result')])
     return c
 
+
+N = 1 
+
 if random.random() < 0.5:
     oracle = constant_oralce
     correct = "CONSTANT"
@@ -29,14 +32,17 @@ else:
     oracle = balanced_oracle
     correct = "BALANCED"
 
-circuit = make_circuit(1, oracle)
+circuit = make_circuit(N, oracle)
 print(circuit)
 simulator = cirq.Simulator()
-result = simulator.run(circuit)
-print(result)
-result = int(str(result)[7])
-print(result)
-if result == 1:
-    print("BALANCED, actual:", correct)
-else: 
-    print("CONSTANT, actual:", correct)
+if N == 1:
+    result = simulator.run(circuit)
+    print(result)
+    result = int(str(result)[7])
+    print(result)
+    if result == 1:
+        print("BALANCED, actual:", correct)
+    else: 
+        print("CONSTANT, actual:", correct)
+else:
+    print("NOT YET IMPLEMENTED")
