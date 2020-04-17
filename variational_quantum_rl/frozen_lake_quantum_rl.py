@@ -103,7 +103,7 @@ def train(model, memory, batch_size, gamma, bits):
         if done:
             target_f[action] = reward
         else:
-            q_pred = np.amax(model.predict(next_state)[0])
+            q_pred = model.predict(next_state)[0][action]
             target_f[action] = reward + gamma*q_pred
         target_f = np.array([target_f,])
         model.fit(state, target_f, epochs=1, verbose=0)
@@ -131,9 +131,16 @@ q_model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), loss=tf
 q_model.summary()
 
 replay_memory = memory(80)
-env = gym.make("FrozenLake-v0")
 
-ITERATIONS = 1000
+gym.envs.registration.register(
+    id='FrozenLake-v1',
+    entry_point='gym.envs.toy_text:FrozenLakeEnv',
+    kwargs={'map_name' : '4x4', 'is_slippery' : False}
+)
+
+env = gym.make("FrozenLake-v1")
+
+ITERATIONS = 800
 batch_size = 8
 windows = 100
 explorataion = 1
@@ -158,8 +165,12 @@ for i in range(ITERATIONS):
         state1 = prep_circuit(s1, bits)
         action = epsilon_greedy(explorataion, 4, q_model, state1)
         s2, reward, done, info = env.step(action)
+        if reward < 1:
+            if done:
+                reward = -0.2
         total_reward += reward
         replay_memory.remember(s1, action, reward, s2, done)
+        #env.render()
         if len(replay_memory.mem) > 16 and done:
             train(q_model, replay_memory.mem, batch_size, gamma, bits)
         if done:
@@ -177,7 +188,7 @@ for i in range(ITERATIONS):
     
     print("\rEpisode {}/{} || Best average reward {}, Current Iteration Reward {}".format(i, ITERATIONS, best_avg_reward, total_reward) , end='', flush=True)
 
-plt.ylim(0,1)
+plt.ylim(-0.5,1.5)
 plt.plot(rewards, color='olive', label='Reward')
 plt.plot(avg_reward, color='red', label='Average')
 plt.legend()
