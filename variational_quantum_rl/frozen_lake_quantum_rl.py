@@ -103,7 +103,7 @@ def train(model, memory, batch_size, gamma, bits):
         if done:
             target_f[action] = reward
         else:
-            q_pred = model.predict(next_state)[0][action]
+            q_pred = np.amax(model.predict(next_state)[0])
             target_f[action] = reward + gamma*q_pred
         target_f = np.array([target_f,])
         model.fit(state, target_f, epochs=1, verbose=0)
@@ -126,7 +126,7 @@ quantum_model = tfq.layers.PQC(create_model_circuit(bits), readout_operators, di
 
 q_model = tf.keras.Model(inputs=[inputs], outputs=[quantum_model])
 
-q_model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), loss=tf.losses.mse)
+q_model.compile(optimizer=tf.keras.optimizers.RMSprop(learning_rate=0.001, rho=0.99, epsilon=1e-8), loss=tf.losses.mse)
 
 q_model.summary()
 
@@ -140,11 +140,12 @@ gym.envs.registration.register(
 
 env = gym.make("FrozenLake-v1")
 
-ITERATIONS = 800
-batch_size = 8
-windows = 100
-explorataion = 1
-gamma = 0.95
+ITERATIONS = 500
+batch_size = 5
+windows = 50
+explorataion = 1.0
+gamma = 0.999
+max_steps = 2500
 
 print(env.action_space)
 print(env.observation_space, env.observation_space.shape)
@@ -159,32 +160,40 @@ for i in range(ITERATIONS):
     s1 = env.reset()
     total_reward = 0
     done = False
-    explorataion = explorataion/(explorataion/100 + 1)
+    explorataion = explorataion/(i/100 + 1.)
+    j = 0
+    #print(i, "exploration", explorataion)
     while not done:
         #env.render()
         state1 = prep_circuit(s1, bits)
         action = epsilon_greedy(explorataion, 4, q_model, state1)
         s2, reward, done, info = env.step(action)
-        if reward < 1:
+        if j >= max_steps:
+            done = True
+        if reward < 0.9:
             if done:
                 reward = -0.2
+            else:
+                reward = -0.01
         total_reward += reward
         replay_memory.remember(s1, action, reward, s2, done)
         #env.render()
-        if len(replay_memory.mem) > 16 and done:
+        if len(replay_memory.mem) > batch_size and done:
             train(q_model, replay_memory.mem, batch_size, gamma, bits)
         if done:
             rewards.append(total_reward)
             rs.append(total_reward)
         else:
             s1 = s2
+        j += 1
+    #print(total_reward)
     if i >= windows:
         avg = np.mean(rs)
         avg_reward.append(avg)
         if avg > best_avg_reward:
             best_avg_reward = avg
     else: 
-        avg_reward.append(-100)
+        avg_reward.append(-0.5)
     
     print("\rEpisode {}/{} || Best average reward {}, Current Iteration Reward {}".format(i, ITERATIONS, best_avg_reward, total_reward) , end='', flush=True)
 
