@@ -9,6 +9,10 @@ import tensorflow_quantum as tfq
 import cirq 
 import sympy
 
+
+def _entropy_loss(target, output):
+    return -tf.math.reduce_mean(target*tf.math.log(output))
+
 class REINFORCE_agent(object):
     def __init__(self, action_size, state_size):
         self.action_space = action_size
@@ -25,14 +29,16 @@ class REINFORCE_agent(object):
         return bits
 
     def make_net(self, state):
-        readout_operators = [cirq.Z(self.qbits[i]) for i in range(2)]
+        readout_operators = [cirq.Z(self.qbits[i]) for i in range(4)]
         inputs = tf.keras.Input(shape=(), dtype=tf.dtypes.string)
         #differentiator=tfq.differentiators.ParameterShift()
         quantum_model = tfq.layers.PQC(self.create_model_circuit(self.qbits), readout_operators, differentiator=tfq.differentiators.ParameterShift(), initializer=tf.keras.initializers.Zeros)(inputs)
-        quantum_model = tf.keras.layers.Softmax()(quantum_model)
+        #quantum_model = tf.keras.layers.Softmax()(quantum_model)
+        quantum_model = tf.keras.layers.Dense(self.action_space, activation='softmax')(quantum_model)
 
         q_model = tf.keras.Model(inputs=[inputs], outputs=[quantum_model])
-        q_model.compile(optimizer=tf.keras.optimizers.Adam(lr=0.01), loss=tf.keras.losses.categorical_crossentropy)
+        q_model.summary()
+        q_model.compile(optimizer=tf.keras.optimizers.Adam(lr=0.01), loss=_entropy_loss)
         return q_model
 
     def convert_data(self, data):
@@ -49,11 +55,13 @@ class REINFORCE_agent(object):
             #U = cirq.ry(ang)
             #ret.append(U(self.qbits[i]))
         for i, ang in enumerate(data):
-            ang = 0 if ang < 1 else 1
+            ang = 0 if ang < 0 else 1
             rx_g = cirq.rx(np.pi*ang)
             ret.append(rx_g(self.qbits[i]))
             rz_g = cirq.rz(np.pi*ang)
             ret.append(rz_g(self.qbits[i]))
+
+
         a = cirq.Circuit()
         a.append(ret)
         inputs = tfq.convert_to_tensor([a])
@@ -143,8 +151,8 @@ class REINFORCE_agent(object):
 
 
 # Hyperparameters
-ITERATIONS = 200
-windows = 10
+ITERATIONS = 250
+windows = 50
 
 env = gym.make("CartPole-v1")
 #env.observation_space.shape
