@@ -54,9 +54,9 @@ class Quantum_DQN(object):
     def __init__(self, action_size, state_size, batch_size):
         self.action_space = action_size
         self.state_space = state_size
-        self.qbits = self.make_bits(2)
+        self.qbits = self.make_bits(4)
         self.q_network = self.make_net(state_size)
-        self.memory = deque(maxlen=100)
+        self.memory = deque(maxlen=10000)
         self.batch = batch_size
         # Q Learning Parameters
         self.gamma = 0.95 # DISCOUNT FACTOR, CLOSE TO 1 = LONG TERM
@@ -71,17 +71,20 @@ class Quantum_DQN(object):
         return bits
 
     def make_net(self, state):
-        readout_operators = [cirq.Z(self.qbits[i]) for i in range(2)]
+        readout_operators = [cirq.Z(self.qbits[i]) for i in range(4)]
         inputs = tf.keras.Input(shape=(), dtype=tf.dtypes.string)
         #differentiator=tfq.differentiators.ParameterShift()
         quantum_model = tfq.layers.PQC(self.create_model_circuit(self.qbits), readout_operators, differentiator=tfq.differentiators.ParameterShift(), initializer=tf.keras.initializers.Zeros)(inputs)
+        quantum_model = tf.keras.layers.Dense(self.action_space)(quantum_model)
 
         q_model = tf.keras.Model(inputs=[inputs], outputs=[quantum_model])
+        q_model.summary()
+        #print(q_model.get_weights())
         q_model.compile(optimizer=tf.keras.optimizers.Adam(lr=0.01), loss=tf.keras.losses.MSE)
         return q_model
 
     def convert_data(self, data):
-        self.qbits = self.make_bits(2)
+        self.qbits = self.make_bits(4)
         ret = []
         if len(data) != 4:
             print(data)
@@ -94,16 +97,15 @@ class Quantum_DQN(object):
             ang = math.radians(ang)
             U = cirq.ry(ang)
             ret.append(U(self.qbits[i]))
+        '''
         for i, ang in enumerate(data):
             ang = 0 if ang < 0 else 1
             rx_g = cirq.rx(np.pi*ang)
             ret.append(rx_g(self.qbits[i]))
             rz_g = cirq.rz(np.pi*ang)
             ret.append(rz_g(self.qbits[i]))
-        '''
-        ret.append(U_theta(data[0], data[1], data[2], data[3]).on(self.qbits[0]))
-        ret.append(U_a0(data[0], data[1], data[2], data[3]).on(self.qbits[0]).controlled_by(self.qbits[1]))
-        ret.append(U_a1(data[0], data[1], data[2], data[3]).on(self.qbits[0]).controlled_by(self.qbits[0]))
+
+
         a = cirq.Circuit()
         a.append(ret)
         inputs = tfq.convert_to_tensor([a])
@@ -111,18 +113,17 @@ class Quantum_DQN(object):
 
     def create_model_circuit(self, bits):
         m = cirq.Circuit()
-        symbols = sympy.symbols('qconv0:18') # 4 qubits * 3 weights per bit * 3 layers
-        m += self.layer(symbols[:6], bits)
-        m += self.layer(symbols[6:12], bits)
-        m += self.layer(symbols[12:], bits)
+        symbols = sympy.symbols('qconv0:36') # 4 qubits * 3 weights per bit * 2 layers
+        m += self.layer(symbols[:12], bits)
+        m += self.layer(symbols[12:24], bits)
+        m += self.layer(symbols[24:], bits)
         print(m)
         return m
 
     def layer(self, weights, qbits):
         ret = []
-        ret.append(cirq.CNOT(qbits[0], qbits[1]))
-        #ret.append(cirq.CNOT(qbits[1], qbits[2]))
-        #ret.append(cirq.CNOT(qbits[2], qbits[3]))
+        for i in range(len(qbits) - 1):
+            ret.append(cirq.CNOT(qbits[i], qbits[i+1]))
         i = 0
         j = 0
         temp = []
@@ -181,10 +182,10 @@ class Quantum_DQN(object):
             self.epsilon *= self.epsilon_decay
 
 # Hyperparameters
-ITERATIONS = 200
+ITERATIONS = 1000
 batch_size = 32
-windows = 10
-learn_delay = 64
+windows = 50
+learn_delay = 1000
 
 env = gym.make("CartPole-v1")
 '''env.observation_space.shape'''
@@ -226,8 +227,8 @@ for i in range(ITERATIONS):
     
     print("\rEpisode {}/{} || Best average reward {}, Current Avg {}, Current Iteration Reward {}".format(i, ITERATIONS, best_avg_reward, avg, total_reward), end='', flush=True)
 
-np.save("rewards", np.asarray(rewards))
-np.save("averages", np.asarray(avg_reward))
+np.save("rewards2", np.asarray(rewards))
+np.save("averages2", np.asarray(avg_reward))
 plt.ylim(0,510)
 plt.plot(rewards, color='olive', label='Reward')
 plt.plot(avg_reward, color='red', label='Average')
