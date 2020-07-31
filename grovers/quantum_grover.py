@@ -34,11 +34,11 @@ def bitstring(bits):
     return ''.join(str(int(b)) for b in bits)
 
 
-n = 4
+n = 6
 circuit = make_circuit(n, oracle)
 print(circuit)
 simulator = cirq.Simulator()
-result = simulator.run(circuit, repetitions=8192)
+result = simulator.run(circuit, repetitions=4096)
 frequencies = result.histogram(key='result', fold_func=bitstring)
 print('Sampled results:\n{}'.format(frequencies))
-print("Actual result: 1s")
+print("Actual result:", n*"1")
