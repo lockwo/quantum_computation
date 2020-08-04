@@ -4,13 +4,18 @@ I will be implementing a variety of quantum algorithms in this repository. I wil
 
 # Implemented Algorithms
 
-## Deutsch–Jozsa algorithm
+## Deutsch–Jozsa Algorithm
 
 In this folder I have both a classical (although it's faster because the function is discoverable very early because all 0s is 0 then add 1 and it returns 1, thus after 2 iterations it is discovered to be balanced, however this could be fixed with a better balanced function) and quantum algorithms. Basically, the toy problem is that you have {0,1}^n -> balanced or constant (i.e. even number of 1s and 0s or all 1s/0s). This requires 2^(n-1)+1 classical (worst case), but can be done much faster because the quantum superpositions can represent this much easier. I only have it implemented for n = 1 and n = 2. Adding more balanced would be easy, and constant likely would as well, but as this is such a toy example, I leave it at 2. 
 
 ## Grover's Algorithm
 
 One of the most famous algorithms in quantum computing is also a relatively simple one. For a function, f(x) = 1 if x == ? else 0, this algorithm can provide O(sqrt(N)) time in searching. The way this algorithm works is by encoding everything, applying Hadamard gates, applying to oracle function, then applying the Grover operator. This grover operator basically flips everything around the average coefficient/measurement probability. Because the oracle function inverts the amplitude for the f(x) = 1 case, it is now negative. Thus flipping about the average decreases all but the specified one which is dramatically increased. However, this is probabilistic and needs to be done O(sqrt(N)) times. We simulate it many more times because of certain probabilistic unreliabilities. [Here](https://www.diva-portal.org/smash/get/diva2:1214481/FULLTEXT01.pdf) is a similar and beginner friendly overview. Note that, when using certain oracle, quantum uncomputation is needed (i.e. you need to undo the unitary operations done so there is no entangled interference). 
+
+## Simon's Algorithm
+
+This is another oracle based algorithm, and is similar to Deutsch-Jozsa in that it isn't the most practically applicable, but it demonstrates the power of quantum computing very well. Basically the problem is as such, there is a function, f(x), that meets the criteria f(x) = f(x XOR a) $$\int_\Omega \nabla u \cdot \nabla v~dx = \int_\Omega fv~dx$$
+
 
 ## Variational Quantum RL
 
