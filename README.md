@@ -1,8 +1,12 @@
 # Quantum Computation
 
-I will be implementing a variety of quantum algorithms in this repository. I will start off with simple well established ones as I learn about the process, then I will experiment with some new ones. This repository uses Cirq and Tensorflow Quantum. 
+I will be implementing a variety of quantum algorithms in this repository. I will start off with simple well established ones as I learn about the process, then I will experiment with some new ones. This repository uses Cirq and Tensorflow Quantum. Arbitrary contains a somewhat interesting attempt to train a neural network to efficently generate arbitrary quantum states, i.e. encode classical data as the probabilities of measurements of states, unlocking the optimal 2^N possibilities of qubits. 
 
 # Implemented Algorithms
+
+## Research:
+
+This is work I have conducted investigating different aspects of quantum machine learning/applying machine learning to quantum computing. Two files included are q_reinforce and q_a2c, which are the quantum variational circuit versions of the named algorithms.
 
 ## Deutsch–Jozsa Algorithm
 
