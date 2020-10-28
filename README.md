@@ -1,12 +1,16 @@
 # Quantum Computation
 
-I will be implementing a variety of quantum algorithms in this repository. I will start off with simple well established ones as I learn about the process, then I will experiment with some new ones. This repository uses Cirq and Tensorflow Quantum. Arbitrary contains a somewhat interesting attempt to train a neural network to efficently generate arbitrary quantum states, i.e. encode classical data as the probabilities of measurements of states, unlocking the optimal 2^N possibilities of qubits. 
+I will be implementing a variety of quantum algorithms in this repository. This repository uses Cirq and Tensorflow Quantum. I will be making videos on each of these when I find the time, and when I do the link will be here:
 
 # Implemented Algorithms
 
-## Research:
+## Research
 
-This is work I have conducted investigating different aspects of quantum machine learning/applying machine learning to quantum computing. Two files included are q_reinforce and q_a2c, which are the quantum variational circuit versions of the named algorithms.
+Misc. code, may or may not run, definitely won't work. Just ideas and scraps that I figured I'd save.
+
+## Quantum Teleportation
+
+The quantum teleportation algorithm is a technique to transport a quantum state. If Alice and Bob have each have 1 qubit and they are entangled (in this case we consider them to be in a Bell state) then Alice can interact with her qubit and a message qubit and once she measures her qubit and sends some classical information to Bob, Bob knows the state of his qubit. Because common quantum simulations programs, including cirq, do not allow for operations after measurement the teleportation aspect is kind of lost. Nonetheless, the principle remains. 
 
 ## Deutsch–Jozsa Algorithm
 
