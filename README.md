@@ -4,6 +4,10 @@ I will be implementing a variety of quantum algorithms in this repository. This 
 
 # Implemented Algorithms
 
+## TensorFlow-Quantum (TFQ)
+
+Code for different TFQ experimentation. Includes original code and tutorials (and translated tutorials from pennylane to tfq). 
+
 ## Research
 
 Misc. code, may or may not run, definitely won't work. Just ideas and scraps that I figured I'd save.
