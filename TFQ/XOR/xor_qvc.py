@@ -67,8 +67,6 @@ def make_circuit(qubits):
     c.append(cirq.ry(y2).on(qubits[1]))
     c.append(cirq.rz(z2).on(qubits[1]))
     c += two_qubit_pool(qubits[0], qubits[1], pool)
-    test = sympy.symbols('test')
-    c.append(cirq.rz(test).on(qubits[1]).controlled_by(qubits[0]))
     return c
 
 def hinge_accuracy(y_true, y_pred):
