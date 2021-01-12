@@ -18,6 +18,8 @@ Currently includes:
 
 - Quantum Approximate Optimization Algorithm (QAOA) in TFQ
 
+- Variational Quantum Eigensolver (VQE) in TFQ
+
 ## Research
 
 Misc. code, may or may not run, definitely won't work. Just ideas and scraps that I figured I'd save.
