@@ -18,7 +18,7 @@ Currently includes:
 
 - Quantum Approximate Optimization Algorithm (QAOA) in TFQ
 
-- Variational Quantum Eigensolver (VQE) in TFQ
+- Variational Quantum Eigensolver (VQE) in TFQ: include 1 and 2 qubit hamiltonians
 
 ## Research
 
