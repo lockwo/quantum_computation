@@ -20,6 +20,8 @@ Currently includes:
 
 - Variational Quantum Eigensolver (VQE) in TFQ: include 1 and 2 qubit hamiltonians and replication of [Scalable Quantum Simulation of Molecular Energies](https://arxiv.org/pdf/1512.06860.pdf)
 
+- Rotosolve Optimizer for VQEs in TFQ: from [Structure optimization for parameterized quantum circuits](https://quantum-journal.org/papers/q-2021-01-28-391/pdf/)
+
 ## Research
 
 Misc. code, may or may not run, definitely won't work. Just ideas and scraps that I figured I'd save.
