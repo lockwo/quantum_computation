@@ -22,6 +22,8 @@ Currently includes:
 
 - Rotosolve Optimizer for VQEs in TFQ: from [Structure optimization for parameterized quantum circuits](https://quantum-journal.org/papers/q-2021-01-28-391/pdf/)
 
+- VQE for arbitrarily many qubits in Cirq
+
 ## Research
 
 Misc. code, may or may not run, definitely won't work. Just ideas and scraps that I figured I'd save.
