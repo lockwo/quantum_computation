@@ -4,7 +4,7 @@ I will be implementing a variety of quantum algorithms in this repository. This 
 
 # Implemented Algorithms
 
-## TensorFlow-Quantum (TFQ)
+## TensorFlow-Quantum (TFQ) and Cirq
 
 Code for different TFQ experimentation. Includes original code and tutorials (and translated tutorials from pennylane to tfq). Video discussion on: https://www.youtube.com/channel/UC0U0HDNbdh0aI-9FbpYhPgg
 
