@@ -24,6 +24,12 @@ Currently includes:
 
 - VQE for arbitrarily many qubits in Cirq
 
+## Pennylane
+
+Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hackathon). Problems here: https://challenge.qhack.ai/team/problems. 
+
+- Simple Circuits (20, 30, 50)
+
 ## Research
 
 Misc. code, may or may not run, definitely won't work. Just ideas and scraps that I figured I'd save.
