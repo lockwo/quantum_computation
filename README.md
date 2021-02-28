@@ -24,6 +24,8 @@ Currently includes:
 
 - VQE for arbitrarily many qubits in Cirq
 
+- Custom ParameterShift and Adam optimization comparison with TFQ
+
 ## Pennylane
 
 Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hackathon). Problems here: https://challenge.qhack.ai/team/problems. 
