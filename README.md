@@ -36,6 +36,8 @@ Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hack
 
 - Circuit Training (100, 200, 500)
 
+- Variational Quantum Eigensolvers (100, 200, 500)
+
 ## Research
 
 Misc. code, may or may not run, definitely won't work. Just ideas and scraps that I figured I'd save.
