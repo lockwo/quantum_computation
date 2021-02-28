@@ -34,6 +34,8 @@ Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hack
 
 - Quantum Gradients (100, 200, 500)
 
+- Circuit Training (100, 200, 500)
+
 ## Research
 
 Misc. code, may or may not run, definitely won't work. Just ideas and scraps that I figured I'd save.
