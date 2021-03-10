@@ -26,6 +26,10 @@ Currently includes:
 
 - Custom ParameterShift and Adam optimization comparison with TFQ
 
+- Arbitrary Qubit VQE in TFQ
+
+- [SSVQE](https://arxiv.org/abs/1810.09434) for excited states in TFQ
+
 ## Pennylane
 
 Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hackathon). Problems here: https://challenge.qhack.ai/team/problems. 
