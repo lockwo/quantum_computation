@@ -30,6 +30,16 @@ Currently includes:
 
 - [SSVQE](https://arxiv.org/abs/1810.09434) for excited states in TFQ
 
+- QOSF Application Problems:
+
+  - Swap Test in Cirq
+
+  - Simple Quantum Error Correction in Cirq (Not Uploaded Yet)
+
+  - Quantum Simulator from Scratch (Not Uploaded Yet)
+
+  - Weighted MaxCut QAOA in Cirq (Not Uploaded Yet)
+
 ## Pennylane
 
 Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hackathon). Problems here: https://challenge.qhack.ai/team/problems. 
