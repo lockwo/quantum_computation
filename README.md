@@ -34,7 +34,7 @@ Currently includes:
 
   - Swap Test in Cirq
 
-  - Simple Quantum Error Correction in Cirq (Not Uploaded Yet)
+  - Simple Quantum Error Correction in Cirq
 
   - Quantum Simulator from Scratch (Not Uploaded Yet)
 
