@@ -36,7 +36,7 @@ Currently includes:
 
   - Simple Quantum Error Correction in Cirq
 
-  - Quantum Simulator from Scratch (Not Uploaded Yet)
+  - Quantum Simulator from Scratch
 
   - Weighted MaxCut QAOA in Cirq (Not Uploaded Yet)
 
