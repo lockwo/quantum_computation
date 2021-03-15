@@ -38,7 +38,7 @@ Currently includes:
 
   - Quantum Simulator from Scratch
 
-  - Weighted MaxCut QAOA in Cirq (Not Uploaded Yet)
+  - Weighted MaxCut QAOA in Cirq
 
 ## Pennylane
 
