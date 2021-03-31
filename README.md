@@ -40,6 +40,8 @@ Currently includes:
 
   - Weighted MaxCut QAOA in Cirq
 
+- Barren Plateaus in TFQ
+
 ## Pennylane
 
 Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hackathon). Problems here: https://challenge.qhack.ai/team/problems. 
