@@ -42,6 +42,8 @@ Currently includes:
 
 - Barren Plateaus in TFQ
 
+- Variational Quantum Classifiers/Regressors in TFQ for Circles, Moons, Blobs and Boston Housing
+
 ## Pennylane
 
 Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hackathon). Problems here: https://challenge.qhack.ai/team/problems. 
