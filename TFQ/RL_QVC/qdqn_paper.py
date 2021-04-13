@@ -107,16 +107,15 @@ class QDQN(object):
     def train(self):
         batch_indices = np.random.choice(min(self.counter, self.buff), self.batch)
         state_batch = tfq.convert_to_tensor([self.convert_data(i, False) for i in self.states[batch_indices]])
-        action_batch = tf.convert_to_tensor(self.actions[batch_indices])
+        action_batch = tf.convert_to_tensor(self.actions[batch_indices], dtype=tf.int32)
         action_batch = [[i, action_batch[i][0]] for i in range(len(action_batch))]
-        reward_batch = tf.convert_to_tensor(self.rewards[batch_indices])
-        dones_batch = tf.convert_to_tensor(self.dones[batch_indices])
-        reward_batch = tf.cast(reward_batch, dtype=tf.float32)
-        action_batch = tf.cast(action_batch, dtype=tf.int32)
-        dones_batch = tf.cast(dones_batch, dtype=tf.float32)
+        reward_batch = tf.convert_to_tensor(self.rewards[batch_indices], dtype=tf.float32)
+        dones_batch = tf.convert_to_tensor(self.dones[batch_indices], dtype=tf.float32)
         next_state_batch = tfq.convert_to_tensor([self.convert_data(i, False) for i in self.next_states[batch_indices]])
+
         with tf.GradientTape() as tape:
             next_q = self.q_network(next_state_batch)
+            next_q = tf.expand_dims(tf.reduce_max(next_q, axis=1), -1)
             y = reward_batch + (1 - dones_batch) * self.gamma * next_q
             q_guess = self.q_network(state_batch, training=True)
             pred = tf.gather_nd(q_guess, action_batch)
