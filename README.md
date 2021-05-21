@@ -44,6 +44,8 @@ Currently includes:
 
 - Variational Quantum Classifiers/Regressors in TFQ for Circles, Moons, Blobs and Boston Housing
 
+- Data Re-Uploading Custom Layer (and VQC comparisons)
+
 ## Pennylane
 
 Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hackathon). Problems here: https://challenge.qhack.ai/team/problems. 
