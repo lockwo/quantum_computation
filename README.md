@@ -44,7 +44,7 @@ Currently includes:
 
 - Variational Quantum Classifiers/Regressors in TFQ for Circles, Moons, Blobs and Boston Housing
 
-- Data Re-Uploading Custom Layer (and VQC comparisons)
+- [Data Re-Uploading](https://quantum-journal.org/papers/q-2020-02-06-226/pdf/) Custom Layer (and VQC comparisons)
 
 ## Pennylane
 
