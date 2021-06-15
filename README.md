@@ -14,7 +14,7 @@ Currently includes:
 
 - Solving XOR with QML
 
-- Replicating "Reinforcement learning with quantum variational circuits"
+- Replicating [Reinforcement learning with quantum variational circuits](https://ojs.aaai.org/index.php/AIIDE/article/view/7437/7289)
 
 - Quantum Approximate Optimization Algorithm (QAOA) in TFQ
 
@@ -45,6 +45,8 @@ Currently includes:
 - Variational Quantum Classifiers/Regressors in TFQ for Circles, Moons, Blobs and Boston Housing
 
 - [Data Re-Uploading](https://quantum-journal.org/papers/q-2020-02-06-226/pdf/) Custom Layer (and VQC comparisons)
+
+- Replication of [Variational quantum policies for reinforcement learning](https://arxiv.org/pdf/2103.05577.pdf)
 
 ## Pennylane
 
