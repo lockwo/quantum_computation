@@ -48,6 +48,8 @@ Currently includes:
 
 - Replication of [Variational quantum policies for reinforcement learning](https://arxiv.org/pdf/2103.05577.pdf)
 
+- Replication of [Quantum-assisted quantum compiling](https://quantum-journal.org/papers/q-2019-05-13-140/pdf/)
+
 ## Pennylane
 
 Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hackathon). Problems here: https://challenge.qhack.ai/team/problems. 
