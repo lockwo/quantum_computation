@@ -50,6 +50,8 @@ Currently includes:
 
 - Replication of [Quantum-assisted quantum compiling](https://quantum-journal.org/papers/q-2019-05-13-140/pdf/)
 
+- Replication of [One qubit as a Universal Approximant](https://arxiv.org/pdf/2102.04032.pdf)
+
 ## Pennylane
 
 Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hackathon). Problems here: https://challenge.qhack.ai/team/problems. 
