@@ -52,6 +52,8 @@ Currently includes:
 
 - Replication of [One qubit as a Universal Approximant](https://arxiv.org/pdf/2102.04032.pdf)
 
+- Code for [Playing Atari with Hybrid Quantum-Classical Reinforcement Learning](http://proceedings.mlr.press/v148/lockwood21a/lockwood21a.pdf)
+
 ## Pennylane
 
 Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hackathon). Problems here: https://challenge.qhack.ai/team/problems. 
