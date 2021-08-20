@@ -54,6 +54,8 @@ Currently includes:
 
 - Code for [Playing Atari with Hybrid Quantum-Classical Reinforcement Learning](http://proceedings.mlr.press/v148/lockwood21a/lockwood21a.pdf)
 
+- Quantum Autoencoders using TFQ and TFQ datasets
+
 ## Pennylane
 
 Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hackathon). Problems here: https://challenge.qhack.ai/team/problems. 
