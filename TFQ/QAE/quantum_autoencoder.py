@@ -33,8 +33,8 @@ def make_circuit(qs, state, latent, params, depth, swap_qubit, reference_qubits)
     return c
 
 
-state_qubits = 8
-latent_qubits = 4
+state_qubits = 4
+latent_qubits = 1
 total_qubits = state_qubits + (state_qubits - latent_qubits)
 
 qubits = [cirq.GridQubit(0, i) for i in range(total_qubits + 1 + state_qubits)]
