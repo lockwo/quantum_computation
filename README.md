@@ -56,6 +56,8 @@ Currently includes:
 
 - Quantum Autoencoders using TFQ and TFQ datasets
 
+- [Noise resilience of variational quantum circuits](https://arxiv.org/abs/2011.01125) in TFQ  
+
 ## Pennylane
 
 Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hackathon). Problems here: https://challenge.qhack.ai/team/problems. 
