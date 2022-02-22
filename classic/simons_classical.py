@@ -58,4 +58,3 @@ if __name__ == "__main__":
     print(solve(14))
     end_time = time.time()
     print(end_time - start_time)
-    
