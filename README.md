@@ -1,12 +1,12 @@
 # Quantum Computation
 
-I will be implementing a variety of quantum algorithms in this repository. This repository uses Cirq and Tensorflow Quantum. I will be making videos on each of these when I find the time, and when I do the link will be here:
+I will be implementing a variety of quantum algorithms in this repository. This repository uses Cirq, Tensorflow Quantum, and Pennylane (for now). I recognize the repository structure is somewhat non-optimal, but it is designed to be paired with the video explainers. 
 
 # Implemented Algorithms
 
-## TensorFlow-Quantum (TFQ) and Cirq
+Code for different Quantum Computing and Quantum Machine Learing. All of the following ones have a video discussion on: https://www.youtube.com/channel/UC0U0HDNbdh0aI-9FbpYhPgg
 
-Code for different TFQ experimentation. Includes original code and tutorials (and translated tutorials from pennylane to tfq). Video discussion on: https://www.youtube.com/channel/UC0U0HDNbdh0aI-9FbpYhPgg
+## TensorFlow-Quantum (TFQ) and Cirq
 
 Currently includes:
 
@@ -70,9 +70,9 @@ Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hack
 
 - Variational Quantum Eigensolvers (100, 200, 500)
 
-## Research
+# Classic Algorithms
 
-Misc. code, may or may not run, definitely won't work. Just ideas and scraps that I figured I'd save.
+Contains simple implementations of the following classic quantum computing algorithms. 
 
 ## Quantum Teleportation
 
@@ -90,7 +90,3 @@ One of the most famous algorithms in quantum computing is also a relatively simp
 
 This is another oracle based algorithm, and is similar to Deutsch-Jozsa in that it isn't the most practically applicable, but it demonstrates the power of quantum computing very well. Basically the problem is as such, there is a function, f(x), that meets the criteria f(x) = f(x XOR a) (for some binary string of length 2^n) and we need to find a. Classically we can query the oracle repeatedly until we have a match (i.e. f(x) = f(y)). From there we can do x XOR y and find a. However, worst case you have to query the oracle half of all possible inputs, which scales O(2^(n/2)) with n. This is not very good. The quantum way offers a significant (polynomial) speedup. We have 2n qubits in total. We apply Hadamard gates to the first n qubits (which we can think of as the algorithm qubits) then we generate the orcale via quantum gates with the next n qubits (the function qubits). These gates will vary depending on the oracle. In this case the oracle is simply all 1s (i.e. a = 111...1). Hadamard gates are reapplied to the first n qubits and measurements are taken of the first n. From there we have our answer. Note that this does need to be repeated (potentially) as all 0s is a trivial answer that will always be true (since x XOR 0 = x, f(x) = f(x XOR 0) for any function or input). We need to get the output besides all 0s so we may need to run it again. 
 
-
-## Variational Quantum RL
-
-These algorithms use variational quantum circuits to do reinforcement learning. The first examples comes from [Chen, et al. (2019)](https://arxiv.org/pdf/1907.00397.pdf), specifically frozen lake. These are programmed in the new (as of time of writing) Tensorflow Quantum. These can be thought of as similar to machine learning in that there are 'weights' that are being updated, specifically the parameters of the quantum circuits.
