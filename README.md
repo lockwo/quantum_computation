@@ -57,6 +57,7 @@ Currently includes:
 - Quantum Autoencoders using TFQ and TFQ datasets
 
 - [Noise resilience of variational quantum circuits](https://arxiv.org/abs/2011.01125) in TFQ  
+- Noisy VQE for Molecular Hamiltonians in TFQ 
 
 ## Pennylane
 
