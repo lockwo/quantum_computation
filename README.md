@@ -1,6 +1,6 @@
 # Quantum Computation
 
-I will be implementing a variety of quantum algorithms in this repository. This repository uses Cirq, Tensorflow Quantum, and Pennylane (for now). I recognize the repository structure is somewhat non-optimal, but it is designed to be paired with the video explainers. 
+Unofficial implementations of various papers and algorithms using various tools such as Cirq, TensorFlow-Quantum, Pennylane, etc. If you use this code or base your code on it, cite it using the following. 
 
 # Implemented Algorithms
 
