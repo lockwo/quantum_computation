@@ -1,6 +1,9 @@
 # Quantum Computation
 
-Unofficial implementations of various papers and algorithms using various tools such as Cirq, TensorFlow-Quantum, Pennylane, etc. If you use this code or base your code on it, cite it using the following. 
+Unofficial implementations of various papers and algorithms using various tools such as Cirq, TensorFlow-Quantum, Pennylane, etc. If you use this code or base your code on it, cite it using the following: 
+
+[![DOI](https://zenodo.org/badge/253099682.svg)](https://zenodo.org/badge/latestdoi/253099682)
+
 
 # Implemented Algorithms
 
