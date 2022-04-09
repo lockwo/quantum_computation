@@ -73,21 +73,12 @@ Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hack
 
 # Classic Algorithms
 
-Contains simple implementations of the following classic quantum computing algorithms. 
+- Quantum Teleportation
 
-## Quantum Teleportation
+- Deutsch–Jozsa Algorithm
 
-The quantum teleportation algorithm is a technique to transport a quantum state. If Alice and Bob have each have 1 qubit and they are entangled (in this case we consider them to be in a Bell state) then Alice can interact with her qubit and a message qubit and once she measures her qubit and sends some classical information to Bob, Bob knows the state of his qubit. Because common quantum simulations programs, including cirq, do not allow for operations after measurement the teleportation aspect is kind of lost. Nonetheless, the principle remains. 
+- Grover's Algorithm
 
-## Deutsch–Jozsa Algorithm
+- Simon's Algorithm
 
-In this folder I have both a classical (although it's faster because the function is discoverable very early because all 0s is 0 then add 1 and it returns 1, thus after 2 iterations it is discovered to be balanced, however this could be fixed with a better balanced function) and quantum algorithms. Basically, the toy problem is that you have {0,1}^n -> balanced or constant (i.e. even number of 1s and 0s or all 1s/0s). This requires 2^(n-1)+1 classical (worst case), but can be done much faster because the quantum superpositions can represent this much easier. I only have it implemented for n = 1 and n = 2. Adding more balanced would be easy, and constant likely would as well, but as this is such a toy example, I leave it at 2. 
-
-## Grover's Algorithm
-
-One of the most famous algorithms in quantum computing is also a relatively simple one. For a function, f(x) = 1 if x == ? else 0, this algorithm can provide O(sqrt(N)) time in searching. The way this algorithm works is by encoding everything, applying Hadamard gates, applying to oracle function, then applying the Grover operator. This grover operator basically flips everything around the average coefficient/measurement probability. Because the oracle function inverts the amplitude for the f(x) = 1 case, it is now negative. Thus flipping about the average decreases all but the specified one which is dramatically increased. However, this is probabilistic and needs to be done O(sqrt(N)) times. We simulate it many more times because of certain probabilistic unreliabilities. [Here](https://www.diva-portal.org/smash/get/diva2:1214481/FULLTEXT01.pdf) is a similar and beginner friendly overview. Note that, when using certain oracle, quantum uncomputation is needed (i.e. you need to undo the unitary operations done so there is no entangled interference). 
-
-## Simon's Algorithm
-
-This is another oracle based algorithm, and is similar to Deutsch-Jozsa in that it isn't the most practically applicable, but it demonstrates the power of quantum computing very well. Basically the problem is as such, there is a function, f(x), that meets the criteria f(x) = f(x XOR a) (for some binary string of length 2^n) and we need to find a. Classically we can query the oracle repeatedly until we have a match (i.e. f(x) = f(y)). From there we can do x XOR y and find a. However, worst case you have to query the oracle half of all possible inputs, which scales O(2^(n/2)) with n. This is not very good. The quantum way offers a significant (polynomial) speedup. We have 2n qubits in total. We apply Hadamard gates to the first n qubits (which we can think of as the algorithm qubits) then we generate the orcale via quantum gates with the next n qubits (the function qubits). These gates will vary depending on the oracle. In this case the oracle is simply all 1s (i.e. a = 111...1). Hadamard gates are reapplied to the first n qubits and measurements are taken of the first n. From there we have our answer. Note that this does need to be repeated (potentially) as all 0s is a trivial answer that will always be true (since x XOR 0 = x, f(x) = f(x XOR 0) for any function or input). We need to get the output besides all 0s so we may need to run it again. 
 
