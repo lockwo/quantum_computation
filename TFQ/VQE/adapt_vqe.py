@@ -94,8 +94,8 @@ def adapt_vqe(h, op_pool, qubits):
             grads.append(tf.math.abs(tape.gradient(exp_val, var))[-1])
 
 
-        grads = [i for i in grads if i > 1e-3]
-        if len(grads) == 0 or adapt_iter < 6:
+        grads_ = [i for i in grads if i > 1e-3]
+        if len(grads_) == 0:# or adapt_iter < 6:
             base_circuit = random.choice(circuits)
         else:
             base_circuit = circuits[np.argmax(grads)]
@@ -116,8 +116,8 @@ def adapt_vqe(h, op_pool, qubits):
                 break
             old = guess
             counter += 1
-        #if adapt_iter > 10 and abs(adapt_prev_iter - track[-1]) < 1e-4:
-        #    break
+        if abs(adapt_prev_iter - track[-1]) < 1e-4: # and adapt_iter > 10
+            break
         adapt_prev_iter = track[-1]
         params = var.numpy().tolist()
         adapt_iter += 1
