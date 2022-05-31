@@ -62,6 +62,7 @@ Currently includes:
 - [Noise resilience of variational quantum circuits](https://arxiv.org/abs/2011.01125) in TFQ  
 - Noisy VQE for Molecular Hamiltonians in TFQ 
 - Adapt-VQE in TFQ
+- ADAPT-QAOA in TFQ
 
 ## Pennylane
 
