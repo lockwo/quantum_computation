@@ -76,7 +76,11 @@ Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hack
 
 - Variational Quantum Eigensolvers (100, 200, 500)
 
-# Classic Algorithms
+## Other
+
+- OpenQAOA Intro Code
+
+## Classic Algorithms
 
 - Quantum Teleportation
 
