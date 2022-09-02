@@ -63,6 +63,7 @@ Currently includes:
 - Noisy VQE for Molecular Hamiltonians in TFQ 
 - Adapt-VQE in TFQ
 - ADAPT-QAOA in TFQ
+- Trotterization with TFQ
 
 ## Pennylane
 
