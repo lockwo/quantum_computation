@@ -64,6 +64,7 @@ Currently includes:
 - Adapt-VQE in TFQ
 - ADAPT-QAOA in TFQ
 - Trotterization with TFQ
+- Generalization Bounds of QML Analysis in TFQ
 
 ## Pennylane
 
