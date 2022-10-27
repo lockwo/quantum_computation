@@ -82,6 +82,8 @@ Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hack
 
 - OpenQAOA Intro Code
 
+- OpenQAOA parameter concentration and warm starting
+
 ## Classic Algorithms
 
 - Quantum Teleportation
