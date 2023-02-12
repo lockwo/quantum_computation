@@ -66,6 +66,7 @@ Currently includes:
 - Trotterization with TFQ
 - Generalization Bounds of QML Analysis in TFQ
 - [Noise can be helpful in VQAs for saddle points](https://arxiv.org/abs/2210.06723) in TFQ
+- [Noise-induced barren plateaus](https://arxiv.org/abs/2007.14384) in TFQ
 
 ## Pennylane
 
