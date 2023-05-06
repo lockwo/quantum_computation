@@ -87,6 +87,8 @@ Code for Pennylane experiments (largely from the [QHack](https://qhack.ai/) hack
 
 - OpenQAOA parameter concentration and warm starting
 
+- Quantum volume needed for FTQC in Qiskit
+
 ## Classic Algorithms
 
 - Quantum Teleportation
