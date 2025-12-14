@@ -5,6 +5,11 @@ Unofficial implementations of various papers and algorithms using various tools 
 [![DOI](https://zenodo.org/badge/253099682.svg)](https://zenodo.org/badge/latestdoi/253099682)
 
 
+See also:
+- [QDHMC](https://github.com/diracq/qdhmc/tree/Owen/changes)
+- [CVTFQ](https://github.com/gillverd/cv-tfq/tree/Owen/restructure)
+
+
 # Implemented Algorithms
 
 Code for different Quantum Computing and Quantum Machine Learing. All of the following ones have a video discussion on: https://www.youtube.com/channel/UC0U0HDNbdh0aI-9FbpYhPgg
